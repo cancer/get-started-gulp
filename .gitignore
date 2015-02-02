@@ -1,0 +1,7 @@
+*.sass-cache
+.node-version
+.ruby-version
+node_modules/
+dist/
+Gemfile
+Gemfile.lock

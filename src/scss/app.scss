@@ -1,0 +1,6 @@
+@import 'mixin';
+
+.example {
+  @include font-color();
+  display: block;
+}
