@@ -1,6 +1,8 @@
 @import 'mixin';
+$baseFontSize: 16px;
 
 .example {
   @include font-color();
+  font-size: $baseFontSize;
   display: block;
 }
