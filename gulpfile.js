@@ -1,7 +1,11 @@
-gulp   = require('gulp');
-concat = require('gulp-concat');
-uglify = require('gulp-uglify');
-sass   = require('gulp-sass');
+
+var browserSync  = require('browser-sync');
+var reload       = browserSync.reload;
+var gulp         = require('gulp');
+var concat       = require('gulp-concat');
+var uglify       = require('gulp-uglify');
+var sass         = require('gulp-sass');
+var watch        = require('gulp-watch');
 
 
 gulp.task('js', function(){
@@ -17,6 +21,20 @@ gulp.task('sass', function(){
     .pipe(gulp.dest('./dist/css'));
 });
 
+gulp.task('browser-sync', function(){
+  browserSync({
+    server: {
+      baseDir: './',
+      directory: true,
+    },
+  });
+});
 
-gulp.task('default', ['js', 'sass']);
+gulp.task( 'watch', function() {
+  gulp.watch( [ './src/js/**/*.js' ], [ 'js', reload ] );
+  gulp.watch( [ './src/scss/**/*.scss' ], [ 'sass', reload ] );
+  gulp.watch( [ '**/*.html' ], reload );
+} );
+
+gulp.task('default', ['js', 'sass', 'watch', 'browser-sync']);
 
